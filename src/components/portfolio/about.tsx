@@ -3,10 +3,10 @@ import { Brain, Cpu, Sparkles, Target } from "lucide-react";
 import { SITE } from "@/lib/site";
 
 const PILLARS = [
-  { icon: Brain, title: "Research-grade thinking", desc: "Reading papers, then reducing them to code that ships." },
-  { icon: Cpu, title: "Production discipline", desc: "Eval suites, observability, latency budgets — not just notebooks." },
-  { icon: Sparkles, title: "Product taste", desc: "AI that feels like a product, not a demo." },
-  { icon: Target, title: "Outcome focus", desc: "Models judged by user impact, not leaderboard scores." },
+  { icon: Brain, title: "Curious by default", desc: "Reading papers and breaking models apart to understand why they work." },
+  { icon: Cpu, title: "Hands-on practice", desc: "Building, training and evaluating models — not just watching tutorials." },
+  { icon: Sparkles, title: "Beyond the notebook", desc: "Wrapping experiments into Streamlit and web apps people can actually use." },
+  { icon: Target, title: "Honest about progress", desc: "Showing real work in real time — no inflated metrics, no fake claims." },
 ];
 
 export function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -26,18 +26,18 @@ export function About() {
         <div className="mt-6 grid gap-12 md:grid-cols-2 md:items-start">
           <div>
             <h2 className="font-display text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
-              An engineer who treats AI like <span className="text-gradient">infrastructure</span>, not magic.
+              An aspiring engineer learning AI <span className="text-gradient">by building it</span>.
             </h2>
             <p className="mt-6 text-muted-foreground md:text-lg">
-              I'm {SITE.name.split(" ")[0]} — I build machine learning and generative AI systems that survive
-              contact with real users and real data. From medical image classifiers and predictive
-              maintenance pipelines to RAG knowledge agents, my work is grounded in three things:
-              clean data, honest evaluation, and a UI someone actually wants to use.
+              I'm {SITE.name.split(" ")[0]} — an aspiring AI engineer and machine learning enthusiast.
+              I learn by building real projects in Python with NumPy, Pandas, Scikit-Learn and
+              TensorFlow, then shipping them as Streamlit or web apps so the work doesn't stay
+              stuck in a notebook.
             </p>
             <p className="mt-4 text-muted-foreground">
-              I work across the whole stack — data engineering, model training, MLOps, and the React /
-              FastAPI surfaces that make a model feel like a product. My goal: AI that quietly does
-              the job, day after day.
+              My focus right now is machine learning, deep learning and computer vision — and
+              getting better every week. I'm actively looking for an internship where I can
+              contribute to real systems and learn from experienced engineers.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
