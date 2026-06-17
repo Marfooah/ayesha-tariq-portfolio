@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { Award } from "lucide-react";
-import { EXPERIENCE, CERTIFICATIONS } from "@/lib/site";
+import { Award, Sparkles } from "lucide-react";
+import { LEARNING_JOURNEY, CERTIFICATIONS } from "@/lib/site";
 import { SectionLabel } from "./about";
 
 export function Experience() {
@@ -9,12 +9,15 @@ export function Experience() {
       <div className="mx-auto max-w-6xl">
         <SectionLabel>Journey</SectionLabel>
         <h2 className="mt-6 max-w-2xl font-display text-3xl font-bold sm:text-4xl md:text-5xl">
-          Experience & <span className="text-gradient">credentials</span>.
+          Current <span className="text-gradient">learning journey</span>.
         </h2>
+        <p className="mt-4 max-w-xl text-muted-foreground">
+          An honest timeline of where I am — not where I want to look like I am.
+        </p>
 
         <div className="mt-14 grid gap-12 lg:grid-cols-[1.2fr_1fr]">
           <ol className="relative space-y-8 border-l border-white/10 pl-8">
-            {EXPERIENCE.map((e, i) => (
+            {LEARNING_JOURNEY.map((e, i) => (
               <motion.li
                 key={e.role}
                 initial={{ opacity: 0, x: -16 }}
@@ -44,27 +47,41 @@ export function Experience() {
 
           <div>
             <h3 className="mb-4 font-display text-lg font-semibold">Certifications</h3>
-            <div className="grid gap-3">
-              {CERTIFICATIONS.map((c, i) => (
-                <motion.div
-                  key={c.title}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.04 }}
-                  className="glass hover-lift flex items-center gap-4 rounded-2xl p-4"
-                >
-                  <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary/15">
-                    <Award className="size-5 text-primary" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="truncate text-sm font-medium">{c.title}</div>
-                    <div className="text-xs text-muted-foreground">{c.issuer}</div>
-                  </div>
-                  <div className="font-mono text-xs text-muted-foreground">{c.year}</div>
-                </motion.div>
-              ))}
-            </div>
+            {CERTIFICATIONS.length === 0 ? (
+              <div className="glass flex flex-col items-center justify-center gap-3 rounded-2xl p-10 text-center">
+                <div className="grid size-12 place-items-center rounded-2xl bg-primary/15">
+                  <Sparkles className="size-5 text-primary" />
+                </div>
+                <div className="font-display text-base font-semibold">
+                  Certifications coming soon
+                </div>
+                <p className="max-w-xs text-sm text-muted-foreground">
+                  Verified certificates will appear here as they are completed.
+                </p>
+              </div>
+            ) : (
+              <div className="grid gap-3">
+                {CERTIFICATIONS.map((c, i) => (
+                  <motion.div
+                    key={c.title}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.04 }}
+                    className="glass hover-lift flex items-center gap-4 rounded-2xl p-4"
+                  >
+                    <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary/15">
+                      <Award className="size-5 text-primary" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="truncate text-sm font-medium">{c.title}</div>
+                      <div className="text-xs text-muted-foreground">{c.issuer}</div>
+                    </div>
+                    <div className="font-mono text-xs text-muted-foreground">{c.year}</div>
+                  </motion.div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
