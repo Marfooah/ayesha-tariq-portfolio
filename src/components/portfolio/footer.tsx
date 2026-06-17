@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Download } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { SITE } from "@/lib/site";
 
@@ -13,17 +13,14 @@ export function Footer() {
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-          <a href={SITE.github} target="_blank" rel="noreferrer" className="hover:text-foreground">
+          <a href={SITE.github} target="_blank" rel="noreferrer" className="hover:text-foreground" aria-label="GitHub">
             <Github className="size-4" />
           </a>
-          <a href={SITE.linkedin} target="_blank" rel="noreferrer" className="hover:text-foreground">
+          <a href={SITE.linkedin} target="_blank" rel="noreferrer" className="hover:text-foreground" aria-label="LinkedIn">
             <Linkedin className="size-4" />
           </a>
-          <a href={`mailto:${SITE.email}`} className="hover:text-foreground">
+          <a href={`mailto:${SITE.email}`} className="hover:text-foreground" aria-label="Email">
             <Mail className="size-4" />
-          </a>
-          <a href={SITE.resumeUrl} className="inline-flex items-center gap-1.5 hover:text-foreground">
-            <Download className="size-3.5" /> Resume
           </a>
           <Link to="/auth" className="hover:text-foreground">
             Admin

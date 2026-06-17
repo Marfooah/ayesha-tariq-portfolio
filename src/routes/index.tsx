@@ -8,11 +8,10 @@ import { Skills } from "@/components/portfolio/skills";
 import { Projects } from "@/components/portfolio/projects";
 import { Experience } from "@/components/portfolio/experience";
 import { GithubStats } from "@/components/portfolio/github-stats";
-import { Testimonials } from "@/components/portfolio/testimonials";
+import { Process } from "@/components/portfolio/process";
 import { Contact } from "@/components/portfolio/contact";
 import { Footer } from "@/components/portfolio/footer";
 import type { Project } from "@/lib/projects-data";
-import heroImg from "@/assets/hero-portrait.jpg";
 import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
@@ -22,25 +21,16 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Ayesha Tariq — AI Engineer building production-ready machine learning, generative AI and RAG systems. Selected work, experience and contact.",
+          "Ayesha Tariq — Aspiring AI Engineer building real machine learning, deep learning and computer vision projects. Selected work and learning journey.",
       },
       { property: "og:title", content: `${SITE.name} — AI Engineer` },
       {
         property: "og:description",
-        content: "Building AI systems that solve real problems — selected work and experience.",
+        content: "Aspiring AI Engineer — selected ML, deep learning and computer vision projects.",
       },
-      { property: "og:image", content: heroImg },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: heroImg },
     ],
-    links: [
-      {
-        rel: "preload",
-        as: "image",
-        href: heroImg,
-        fetchpriority: "high",
-      } as any,
-    ],
+    links: [],
   }),
   component: Index,
 });
@@ -74,7 +64,7 @@ function Index() {
         <Projects projects={projects} />
         <Experience />
         <GithubStats />
-        <Testimonials />
+        <Process />
         <Contact />
       </main>
       <Footer />
