@@ -16,7 +16,7 @@ export const FOCUS_AREAS = [
   { title: "Deep Learning", desc: "Neural networks, CNNs & model architectures." },
   { title: "Computer Vision", desc: "Image classification, detection & explainability." },
   { title: "AI Applications", desc: "Turning models into usable Streamlit & web apps." },
-  { title: "Continuous Learning", desc: "Papers, courses and shipping in public." },
+  { title: "Worflow Automations", desc: "Social media automations, repetitive tasks automation." },
 ];
 
 export const SKILL_GROUPS = [
