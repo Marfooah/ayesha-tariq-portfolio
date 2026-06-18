@@ -10,23 +10,35 @@ const PILLARS = [
 ];
 
 export function SectionLabel({ children }: { children: React.ReactNode }) {
-...
-      <div className="mt-6 grid gap-12 md:grid-cols-2 md:items-start">
-        <div>
-          <h2 className="font-display text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
-            An aspiring engineer learning AI <span className="text-gradient">by building it</span>.
-          </h2>
-          <p className="mt-6 text-muted-foreground md:text-lg">
-            I'm {SITE.name.split(" ")[0]} — an aspiring AI engineer and machine learning enthusiast.
-            I learn by building real projects in Python with NumPy, Pandas, Scikit-Learn and
-            TensorFlow, then shipping them as Next.js web apps so the work doesn't stay
-            stuck in a notebook.
-          </p>
-          <p className="mt-4 text-muted-foreground">
-            My focus right now is machine learning, deep learning and computer vision — and
-            getting better every week.
-          </p>
-        </div>
+  return (
+    <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+      <span className="h-px w-8 bg-gradient-to-r from-primary to-transparent" />
+      {children}
+    </div>
+  );
+}
+
+export function About() {
+  return (
+    <section id="about" className="relative px-6 py-24 md:py-32">
+      <div className="mx-auto max-w-6xl">
+        <SectionLabel>About</SectionLabel>
+        <div className="mt-6 grid gap-12 md:grid-cols-2 md:items-start">
+          <div>
+            <h2 className="font-display text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
+              An aspiring engineer learning AI <span className="text-gradient">by building it</span>.
+            </h2>
+            <p className="mt-6 text-muted-foreground md:text-lg">
+              I'm {SITE.name.split(" ")[0]} — an aspiring AI engineer and machine learning enthusiast.
+              I learn by building real projects in Python with NumPy, Pandas, Scikit-Learn and
+              TensorFlow, then shipping them as Next.js web apps so the work doesn't stay
+              stuck in a notebook.
+            </p>
+            <p className="mt-4 text-muted-foreground">
+              My focus right now is machine learning, deep learning and computer vision — and
+              getting better every week.
+            </p>
+          </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {PILLARS.map((p, i) => (
               <motion.div
