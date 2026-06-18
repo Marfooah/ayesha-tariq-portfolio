@@ -30,7 +30,7 @@ export const SKILL_GROUPS = [
   },
   {
     title: "Programming",
-    items: ["Python", "Jupyter Notebook"],
+    items: ["Python", "C++"],
   },
   {
     title: "Frameworks & Tools",
@@ -49,16 +49,16 @@ export const LEARNING_JOURNEY = [
     org: "Self-directed study",
     points: [
       "Deep dive into Python, NumPy, Pandas and the fundamentals of machine learning.",
-      "Building a daily habit of reading papers, taking courses and writing code.",
+      "Building a daily habit of taking courses and writing code.",
     ],
   },
   {
-    period: "2025",
+    period: "2026",
     role: "Built First Machine Learning Projects",
     org: "Hands-on practice",
     points: [
       "Trained classical ML models with Scikit-Learn on real public datasets.",
-      "Wrapped experiments into Streamlit apps to learn end-to-end delivery.",
+      "Wrapped experiments into Streamlit and next.js apps to learn end-to-end delivery.",
     ],
   },
   {
@@ -72,10 +72,10 @@ export const LEARNING_JOURNEY = [
   },
   {
     period: "2026",
-    role: "Seeking Internship & Real-World Experience",
+    role: "Seeking Real-World Experience",
     org: "Open to opportunities",
     points: [
-      "Looking for AI / ML internships where I can contribute and grow alongside experienced engineers.",
+      "Looking for AI / ML projects where I can contribute and grow alongside experienced engineers.",
     ],
   },
 ];
@@ -88,5 +88,5 @@ export const ENGINEERING_PROCESS = [
   { title: "Data Cleaning", desc: "Handle nulls, outliers, leakage and bias." },
   { title: "Model Development", desc: "Iterate from baselines to deep learning architectures." },
   { title: "Evaluation", desc: "Honest metrics, validation splits and error analysis." },
-  { title: "Deployment", desc: "Ship to Streamlit / web so the model is actually usable." },
+  { title: "Deployment", desc: "Ship to next.js web so the model is actually usable." },
 ];
