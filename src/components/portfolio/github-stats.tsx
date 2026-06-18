@@ -3,6 +3,23 @@ import { Github, Star, GitFork, Code2 } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { SectionLabel } from "./about";
 
+const DESCRIPTION_OVERRIDES: Record<string, string> = {
+  "Techmart-pk":
+    "Production-style customer support AI agent for a Pakistani electronics retailer — generates tickets and performs real actions, not just chat.",
+  HistoAI:
+    "AI diagnostic assistant that classifies breast cancer histopathology images as benign or malignant using a CNN trained on the BreakHis dataset.",
+  "HomeValue-AI":
+    "Interactive ML web app that predicts California housing prices using an ANN built with scikit-learn's MLPRegressor and deployed with Streamlit.",
+  DocumentIQ:
+    "RAG chatbot built with Streamlit, LangChain, FAISS and Google Gemini — upload TXT/Excel files and ask grounded, citation-backed questions.",
+  "MachineGuard-AI":
+    "End-to-end machine failure prediction system using Logistic Regression and KNN, with feature engineering and a live Streamlit app for real-time predictions.",
+  "DiaGuard-AI-":
+    "ML app that predicts diabetes risk from clinical indicators using an ANN trained on the Pima Indians dataset, with interpretable per-feature risk breakdowns.",
+  Sportify:
+    "Domain-specific RAG assistant for a sports complex — answers member, schedule and policy questions grounded in private internal documents.",
+};
+
 type Repo = {
   id: number;
   name: string;
@@ -64,7 +81,7 @@ export function GithubStats() {
                 <Code2 className="size-4 text-primary" /> {r.name}
               </div>
               <p className="mt-2 line-clamp-3 flex-1 text-xs text-muted-foreground">
-                {r.description || "No description"}
+                {DESCRIPTION_OVERRIDES[r.name] || r.description || "No description"}
               </p>
               <div className="mt-4 flex items-center gap-4 text-xs text-muted-foreground">
                 {r.language && <span className="text-emerald">● {r.language}</span>}
