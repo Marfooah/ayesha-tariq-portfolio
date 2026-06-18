@@ -3,9 +3,9 @@ import { Brain, Cpu, Sparkles, Target } from "lucide-react";
 import { SITE } from "@/lib/site";
 
 const PILLARS = [
-  { icon: Brain, title: "Curious by default", desc: "Reading papers and breaking models apart to understand why they work." },
+  { icon: Brain, title: "Curious by default", desc: "Breaking models apart to understand why they work." },
   { icon: Cpu, title: "Hands-on practice", desc: "Building, training and evaluating models — not just watching tutorials." },
-  { icon: Sparkles, title: "Beyond the notebook", desc: "Wrapping experiments into Streamlit and web apps people can actually use." },
+  { icon: Sparkles, title: "Beyond the notebook", desc: "Wrapping experiments into web apps people can actually use." },
   { icon: Target, title: "Honest about progress", desc: "Showing real work in real time — no inflated metrics, no fake claims." },
 ];
 
@@ -31,13 +31,12 @@ export function About() {
             <p className="mt-6 text-muted-foreground md:text-lg">
               I'm {SITE.name.split(" ")[0]} — an aspiring AI engineer and machine learning enthusiast.
               I learn by building real projects in Python with NumPy, Pandas, Scikit-Learn and
-              TensorFlow, then shipping them as Streamlit or web apps so the work doesn't stay
+              TensorFlow, then shipping them as Next.js web apps so the work doesn't stay
               stuck in a notebook.
             </p>
             <p className="mt-4 text-muted-foreground">
               My focus right now is machine learning, deep learning and computer vision — and
-              getting better every week. I'm actively looking for an internship where I can
-              contribute to real systems and learn from experienced engineers.
+              getting better every week.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
