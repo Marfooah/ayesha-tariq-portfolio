@@ -1,12 +1,11 @@
-import { Link } from "@tanstack/react-router";
 import { SITE } from "@/lib/site";
 
 const LINKS = [
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
-  { href: "#experience", label: "Experience" },
-  { href: "#contact", label: "Contact" },
+  { href: "#systems", label: "Systems" },
+  { href: "#process", label: "Process" },
+  { href: "#work",    label: "Work" },
+  { href: "#why-ugg", label: "Why UGG" },
+  { href: "#faq",     label: "FAQ" },
 ];
 
 export function Nav() {
@@ -15,7 +14,7 @@ export function Nav() {
       <nav className="glass-strong mx-auto flex max-w-6xl items-center justify-between rounded-2xl px-5 py-3">
         <a href="#top" className="flex items-center gap-2 font-display text-sm font-bold tracking-tight">
           <span className="inline-block size-2 rounded-full bg-primary shadow-glow" />
-          {SITE.name}
+          UGG
         </a>
         <ul className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
           {LINKS.map((l) => (
@@ -27,17 +26,11 @@ export function Nav() {
           ))}
         </ul>
         <div className="flex items-center gap-2">
-          <Link
-            to="/auth"
-            className="hidden rounded-full px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground sm:inline-block"
-          >
-            Admin
-          </Link>
           <a
-            href="#contact"
+            href={SITE.auditUrl}
             className="rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background transition-transform hover:scale-[1.03]"
           >
-            Get in touch
+            Free Assessment
           </a>
         </div>
       </nav>

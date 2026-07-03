@@ -4,34 +4,67 @@ import { useState } from "react";
 import { type Project, thumbFor } from "@/lib/projects-data";
 import { SectionLabel } from "./about";
 
-export function Projects({ projects }: { projects: Project[] }) {
+export function Projects({
+  projects,
+  isLoading,
+  isError,
+}: {
+  projects: Project[];
+  isLoading: boolean;
+  isError: boolean;
+}) {
   return (
-    <section id="projects" className="relative px-6 py-24 md:py-32">
+    <section id="work" className="relative px-6 py-24 md:py-32">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <SectionLabel>Work</SectionLabel>
             <h2 className="mt-6 max-w-2xl font-display text-3xl font-bold sm:text-4xl md:text-5xl">
-              Selected <span className="text-gradient">projects</span>.
+              Selected <span className="text-gradient">case studies</span>.
             </h2>
           </div>
           <p className="max-w-md text-sm text-muted-foreground">
-            Production-grade AI products spanning medical imaging, predictive maintenance and RAG
-            knowledge agents.
+            Real intelligent systems built for real business operations.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {projects.map((p, i) => (
-            <ProjectCard key={p.id} project={p} delay={i * 0.05} />
-          ))}
-        </div>
+        {/* Loading skeleton */}
+        {isLoading && (
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {[0, 1, 2, 3].map((i) => (
+              <div key={i} className="glass-strong rounded-3xl overflow-hidden animate-pulse">
+                <div className="aspect-[16/10] bg-white/[0.04]" />
+                <div className="p-6 space-y-3">
+                  <div className="h-4 w-2/3 rounded bg-white/[0.06]" />
+                  <div className="h-3 w-full rounded bg-white/[0.04]" />
+                  <div className="h-3 w-4/5 rounded bg-white/[0.04]" />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Empty / error state */}
+        {!isLoading && (isError || projects.length === 0) && (
+          <div className="mt-12 glass rounded-2xl p-12 text-center text-muted-foreground">
+            New case studies coming soon.
+          </div>
+        )}
+
+        {/* Loaded state */}
+        {!isLoading && projects.length > 0 && (
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {projects.map((p, i) => (
+              <ProjectCard key={p.id} project={p} delay={i * 0.05} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
 }
 
-function ProjectCard({ project, delay }: { project: Project; delay: number }) {
+export function ProjectCard({ project, delay }: { project: Project; delay: number }) {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {

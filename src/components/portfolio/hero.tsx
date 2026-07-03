@@ -1,8 +1,31 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Mail } from "lucide-react";
-import { SITE, FOCUS_AREAS } from "@/lib/site";
+import { ArrowRight } from "lucide-react";
+import { SITE, PROOF_CARDS } from "@/lib/site";
+import type { ProofCard } from "@/lib/site";
 import { Particles } from "./particles";
 import { NeuralHero } from "./neural-hero";
+
+// ─── ProofGrid sub-component ─────────────────────────────────────────────────
+// Exported so it can be tested directly with injected data.
+
+export function ProofGrid({ cards }: { cards: ProofCard[] }) {
+  return (
+    <div className="grid grid-cols-3 gap-3">
+      {cards.map((card, i) => (
+        <motion.div
+          key={card.label}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.35 + i * 0.06 }}
+          className="glass hover-lift rounded-xl px-3 py-2.5 text-center"
+        >
+          <div className="text-gradient font-display text-lg font-bold">{card.value}</div>
+          <div className="mt-0.5 text-[11px] leading-snug text-muted-foreground">{card.label}</div>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
 
 export function Hero() {
   return (
@@ -25,7 +48,7 @@ export function Hero() {
             className="glass inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs text-muted-foreground"
           >
             <span className="size-1.5 rounded-full bg-emerald animate-pulse-glow" />
-            Open to AI / ML internships &amp; collaborations
+            Now taking on new clients
           </motion.div>
 
           <motion.h1
@@ -34,8 +57,8 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.05 }}
             className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
           >
-            Teaching machines to solve problems<br />
-            <span className="text-gradient">while humans keep creating new ones</span>.
+            Your business is leaking time.<br />
+            <span className="text-gradient">Every single day.</span>
           </motion.h1>
 
           <motion.p
@@ -44,7 +67,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg"
           >
-            {SITE.subheadline}. {SITE.bio}
+            Ummah Growth Guide is a Business Systems Studio that eliminates repetitive manual work by designing intelligent systems built around how your business actually operates.
           </motion.p>
 
           <motion.div
@@ -54,49 +77,26 @@ export function Hero() {
             className="mt-8 flex flex-wrap items-center gap-3"
           >
             <a
-              href="#projects"
+              href={SITE.auditUrl}
               className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background transition-transform hover:scale-[1.03]"
             >
-              View projects
+              Get Your Free Business Efficiency Assessment
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </a>
             <a
-              href="#projects"
+              href="#systems"
               className="glass inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-white/[0.06]"
             >
-              Explore my work
+              Explore Intelligent Systems
               <ArrowRight className="size-4" />
-            </a>
-            <a
-              href={`mailto:${SITE.email}`}
-              className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <Mail className="size-4" /> Contact
             </a>
           </motion.div>
 
           <div className="mt-12">
             <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-              Current focus
+              What UGG delivers
             </div>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-              {FOCUS_AREAS.map((f, i) => (
-                <motion.div
-                  key={f.title}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.35 + i * 0.06 }}
-                  className="glass hover-lift group rounded-xl px-3 py-2.5"
-                >
-                  <div className="text-sm font-semibold text-foreground transition-colors group-hover:text-primary">
-                    {f.title}
-                  </div>
-                  <div className="mt-0.5 text-[11px] leading-snug text-muted-foreground">
-                    {f.desc}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            <ProofGrid cards={PROOF_CARDS} />
           </div>
         </div>
 
