@@ -3,30 +3,29 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Nav } from "@/components/portfolio/nav";
 import { Hero } from "@/components/portfolio/hero";
-import { About } from "@/components/portfolio/about";
+import { Cost } from "@/components/portfolio/cost";
 import { Skills } from "@/components/portfolio/skills";
-import { Projects } from "@/components/portfolio/projects";
-import { Experience } from "@/components/portfolio/experience";
-import { GithubStats } from "@/components/portfolio/github-stats";
 import { Process } from "@/components/portfolio/process";
+import { Projects } from "@/components/portfolio/projects";
+import { About } from "@/components/portfolio/about";
+import { FAQ } from "@/components/portfolio/faq";
 import { Contact } from "@/components/portfolio/contact";
 import { Footer } from "@/components/portfolio/footer";
 import type { Project } from "@/lib/projects-data";
-import { SITE } from "@/lib/site";
+import { SITE, META } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: `${SITE.name} — AI Engineer · ML · Generative AI` },
+      { title: META.title },
       {
         name: "description",
-        content:
-          "Ayesha Tariq — Aspiring AI Engineer building real machine learning, deep learning and computer vision projects. Selected work and learning journey.",
+        content: META.description,
       },
-      { property: "og:title", content: `${SITE.name} — AI Engineer` },
+      { property: "og:title", content: META.title },
       {
         property: "og:description",
-        content: "Aspiring AI Engineer — selected ML, deep learning and computer vision projects.",
+        content: META.description,
       },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -36,7 +35,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const { data: projects = [] } = useQuery({
+  const { data: projects = [], isLoading, isError } = useQuery({
     queryKey: ["projects-public"],
     queryFn: async (): Promise<Project[]> => {
       const { data, error } = await supabase
@@ -59,12 +58,12 @@ function Index() {
       <Nav />
       <main>
         <Hero />
-        <About />
+        <Cost />
         <Skills />
-        <Projects projects={projects} />
-        <Experience />
-        <GithubStats />
         <Process />
+        <Projects projects={projects} isLoading={isLoading} isError={isError} />
+        <About />
+        <FAQ />
         <Contact />
       </main>
       <Footer />

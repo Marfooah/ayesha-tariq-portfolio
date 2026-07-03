@@ -1,6 +1,15 @@
 import { motion } from "framer-motion";
-import { LEARNING_JOURNEY } from "@/lib/site";
 import { SectionLabel } from "./about";
+
+// This component is no longer used in index.tsx (superseded by the UGG redesign).
+// The LEARNING_JOURNEY export was removed from site.ts in Task 1.
+// Kept as dead code; using an empty array so TypeScript stays clean.
+const LEARNING_JOURNEY: Array<{
+  period: string;
+  role: string;
+  org: string;
+  points: string[];
+}> = [];
 
 export function Experience() {
   return (
@@ -15,7 +24,7 @@ export function Experience() {
         </p>
 
         <ol className="relative mt-14 space-y-8 border-l border-white/10 pl-8">
-            {LEARNING_JOURNEY.map((e, i) => (
+            {LEARNING_JOURNEY.map((e: { period: string; role: string; org: string; points: string[] }, i: number) => (
               <motion.li
                 key={e.role}
                 initial={{ opacity: 0, x: -16 }}
@@ -33,7 +42,7 @@ export function Experience() {
                 <h3 className="mt-1 font-display text-lg font-semibold">{e.role}</h3>
                 <div className="text-sm text-muted-foreground">{e.org}</div>
                 <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
-                  {e.points.map((p) => (
+                  {e.points.map((p: string) => (
                     <li key={p} className="flex gap-2">
                       <span className="mt-2 size-1 shrink-0 rounded-full bg-emerald" /> {p}
                     </li>
