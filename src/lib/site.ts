@@ -44,7 +44,7 @@ export interface FaqItem {
 export const SITE = {
   name: "Ummah Growth Guide",
   tagline: "We don't sell AI. We redesign how your business operates.",
-  auditUrl: "/apply",
+  auditUrl: "/business-efficiency-assessment",
   email: "salam@ummahgrowthguide.com",
   linkedin: "",
   github: "https://github.com/Marfooah",

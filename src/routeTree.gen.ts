@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as BusinessEfficiencyAssessmentRouteImport } from './routes/business-efficiency-assessment'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AssessmentRouteImport } from './routes/assessment'
 import { Route as ApplyRouteImport } from './routes/apply'
@@ -22,6 +23,12 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BusinessEfficiencyAssessmentRoute =
+  BusinessEfficiencyAssessmentRouteImport.update({
+    id: '/business-efficiency-assessment',
+    path: '/business-efficiency-assessment',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/apply': typeof ApplyRoute
   '/assessment': typeof AssessmentRoute
   '/auth': typeof AuthRoute
+  '/business-efficiency-assessment': typeof BusinessEfficiencyAssessmentRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin': typeof AuthenticatedAdminRoute
 }
@@ -65,6 +73,7 @@ export interface FileRoutesByTo {
   '/apply': typeof ApplyRoute
   '/assessment': typeof AssessmentRoute
   '/auth': typeof AuthRoute
+  '/business-efficiency-assessment': typeof BusinessEfficiencyAssessmentRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin': typeof AuthenticatedAdminRoute
 }
@@ -75,15 +84,29 @@ export interface FileRoutesById {
   '/apply': typeof ApplyRoute
   '/assessment': typeof AssessmentRoute
   '/auth': typeof AuthRoute
+  '/business-efficiency-assessment': typeof BusinessEfficiencyAssessmentRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/apply' | '/assessment' | '/auth' | '/sitemap.xml' | '/admin'
+    | '/'
+    | '/apply'
+    | '/assessment'
+    | '/auth'
+    | '/business-efficiency-assessment'
+    | '/sitemap.xml'
+    | '/admin'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/apply' | '/assessment' | '/auth' | '/sitemap.xml' | '/admin'
+  to:
+    | '/'
+    | '/apply'
+    | '/assessment'
+    | '/auth'
+    | '/business-efficiency-assessment'
+    | '/sitemap.xml'
+    | '/admin'
   id:
     | '__root__'
     | '/'
@@ -91,6 +114,7 @@ export interface FileRouteTypes {
     | '/apply'
     | '/assessment'
     | '/auth'
+    | '/business-efficiency-assessment'
     | '/sitemap.xml'
     | '/_authenticated/admin'
   fileRoutesById: FileRoutesById
@@ -101,6 +125,7 @@ export interface RootRouteChildren {
   ApplyRoute: typeof ApplyRoute
   AssessmentRoute: typeof AssessmentRoute
   AuthRoute: typeof AuthRoute
+  BusinessEfficiencyAssessmentRoute: typeof BusinessEfficiencyAssessmentRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
@@ -111,6 +136,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business-efficiency-assessment': {
+      id: '/business-efficiency-assessment'
+      path: '/business-efficiency-assessment'
+      fullPath: '/business-efficiency-assessment'
+      preLoaderRoute: typeof BusinessEfficiencyAssessmentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -175,6 +207,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApplyRoute: ApplyRoute,
   AssessmentRoute: AssessmentRoute,
   AuthRoute: AuthRoute,
+  BusinessEfficiencyAssessmentRoute: BusinessEfficiencyAssessmentRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport

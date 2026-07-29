@@ -64,8 +64,7 @@ function Apply() {
       }}
     >
       <iframe
-        // Use /embed/ URL (not /r/ share URL) — the /r/ URL renders full Tally page chrome
-        data-tally-src="https://tally.so/embed/44q5AO?transparentBackground=1"
+        data-tally-src="https://tally.so/embed/44q5AO"
         loading="lazy"
         width="100%"
         height="100%"
