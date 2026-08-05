@@ -3,7 +3,6 @@ import { ArrowRight } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { SectionLabel } from "./about";
 
-// FinalCTAContent sub-component for testability:
 export function FinalCTAContent({
   auditUrl,
   socialProof,
@@ -15,12 +14,12 @@ export function FinalCTAContent({
     <div className="relative">
       <SectionLabel>Start Here</SectionLabel>
       <h2 className="mt-6 font-display text-3xl font-bold sm:text-4xl md:text-5xl max-w-3xl mx-auto">
-        Every repetitive task you do tomorrow is work your business{" "}
-        <span className="text-gradient">could already have automated</span>.
+        Better support isn't built by{" "}
+        <span className="text-gradient">hiring faster.</span>
       </h2>
       <p className="mt-6 max-w-xl mx-auto text-muted-foreground">
-        The audit is free. The conversation takes 30 minutes. The cost of waiting is measured in
-        hours every single week.
+        It's built by designing better systems. Request an Operations Assessment and we'll map
+        exactly where your support operation can improve.
       </p>
       <div className="mt-10 flex flex-col items-center gap-4">
         {auditUrl ? (
@@ -28,7 +27,7 @@ export function FinalCTAContent({
             href={auditUrl}
             className="group inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-4 text-sm font-semibold text-background transition-transform hover:scale-[1.03]"
           >
-            Get Your Free Business Efficiency Assessment
+            Request an Operations Assessment
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
           </a>
         ) : (
@@ -36,7 +35,7 @@ export function FinalCTAContent({
             disabled
             className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-4 text-sm font-semibold text-background opacity-40 cursor-not-allowed"
           >
-            Get Your Free Business Efficiency Assessment
+            Request an Operations Assessment
             <ArrowRight className="size-4" />
           </button>
         )}
@@ -61,14 +60,8 @@ export function Contact() {
           transition={{ duration: 0.6 }}
           className="glass-strong relative overflow-hidden rounded-3xl p-8 md:p-14 text-center"
         >
-          <div
-            className="absolute -right-20 -top-20 size-72 rounded-full bg-primary opacity-20 blur-3xl"
-            aria-hidden
-          />
-          <div
-            className="absolute -bottom-24 -left-10 size-72 rounded-full bg-emerald opacity-20 blur-3xl"
-            aria-hidden
-          />
+          <div className="absolute -right-20 -top-20 size-72 rounded-full bg-primary opacity-20 blur-3xl" aria-hidden />
+          <div className="absolute -bottom-24 -left-10 size-72 rounded-full bg-emerald opacity-20 blur-3xl" aria-hidden />
           <FinalCTAContent auditUrl={SITE.auditUrl} socialProof={SITE.socialProof} />
         </motion.div>
       </div>

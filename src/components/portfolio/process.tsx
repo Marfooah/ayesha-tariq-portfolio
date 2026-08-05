@@ -1,21 +1,36 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Search, LayoutDashboard, GitBranch, Code2, Rocket, TrendingUp } from "lucide-react";
-import { ENGAGEMENT_PROCESS, type EngagementStep } from "@/lib/site";
+import { ArrowDown, Search, Compass, Code2, TrendingUp } from "lucide-react";
 import { SectionLabel } from "./about";
+import type { EngagementStep } from "@/lib/site";
 
-const ICONS = [Search, LayoutDashboard, GitBranch, Code2, Rocket, TrendingUp];
-//              0        1                2          3       4        5
+const PROCESS_STEPS = [
+  {
+    title: "Understand",
+    desc: "We map your current support operation — what comes in, how it's handled, and where the repetition lives.",
+    Icon: Search,
+  },
+  {
+    title: "Design",
+    desc: "We design the operating system. What resolves automatically. What reaches your team. How the handoff works.",
+    Icon: Compass,
+  },
+  {
+    title: "Build",
+    desc: "We build and integrate the system into your existing stack. No new tools for the sake of it.",
+    Icon: Code2,
+  },
+  {
+    title: "Refine",
+    desc: "We monitor, measure, and improve. The system gets more accurate as it processes more volume.",
+    Icon: TrendingUp,
+  },
+];
 
-/** Pure sub-component that renders up to 6 process step cards from the given steps array.
- *  Always renders exactly Math.min(steps.length, 6) cards — the Process parent passes
- *  `ENGAGEMENT_PROCESS.slice(0, 6)` so the count is always exactly 6 at runtime.
- */
 export function ProcessGrid({ steps }: { steps: EngagementStep[] }) {
-  const visible = steps.slice(0, 6);
   return (
-    <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {visible.map((step, i) => {
-        const Icon = ICONS[i];
+    <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      {steps.map((step, i) => {
+        const { Icon } = PROCESS_STEPS[i] ?? { Icon: Search };
         return (
           <motion.div
             key={step.title}
@@ -23,7 +38,7 @@ export function ProcessGrid({ steps }: { steps: EngagementStep[] }) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5, delay: i * 0.07 }}
+            transition={{ duration: 0.5, delay: i * 0.08 }}
             className={`glass hover-lift group relative overflow-hidden rounded-2xl p-6 ${i === 0 ? "shadow-glow" : ""}`}
           >
             <div className="pointer-events-none absolute -right-12 -top-12 size-32 rounded-full bg-gradient-to-br from-primary to-emerald opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-30" />
@@ -32,12 +47,12 @@ export function ProcessGrid({ steps }: { steps: EngagementStep[] }) {
                 <Icon className="size-5 text-primary" />
               </div>
               <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                Step {String(i + 1).padStart(2, "0")}
+                {String(i + 1).padStart(2, "0")}
               </span>
             </div>
             <h3 className="mt-4 font-display text-lg font-semibold">{step.title}</h3>
             <p className="mt-1 text-sm text-muted-foreground">{step.desc}</p>
-            {i < 5 && (
+            {i < steps.length - 1 && (
               <ArrowDown className="absolute bottom-4 right-4 size-4 text-muted-foreground/40 transition-colors group-hover:text-primary" />
             )}
           </motion.div>
@@ -50,12 +65,13 @@ export function ProcessGrid({ steps }: { steps: EngagementStep[] }) {
 export function Process() {
   return (
     <section id="process" className="relative px-6 py-24 md:py-32">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl" id="operations">
         <SectionLabel>How We Work</SectionLabel>
-        <h2 className="mt-6 max-w-2xl font-display text-3xl font-bold sm:text-4xl md:text-5xl">
-          A clear path from <span className="text-gradient">problem to system</span>.
+        <h2 className="mt-6 max-w-xl font-display text-3xl font-bold sm:text-4xl md:text-5xl">
+          Understand. Design. Build.{" "}
+          <span className="text-gradient">Refine.</span>
         </h2>
-        <ProcessGrid steps={ENGAGEMENT_PROCESS.slice(0, 6)} />
+        <ProcessGrid steps={PROCESS_STEPS} />
       </div>
     </section>
   );

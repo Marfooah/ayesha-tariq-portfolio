@@ -1,13 +1,11 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { SITE, PROOF_CARDS } from "@/lib/site";
+import { SITE } from "@/lib/site";
 import type { ProofCard } from "@/lib/site";
 import { Particles } from "./particles";
 import { NeuralHero } from "./neural-hero";
 
-// ─── ProofGrid sub-component ─────────────────────────────────────────────────
-// Exported so it can be tested directly with injected data.
-
+// Kept for property tests
 export function ProofGrid({ cards }: { cards: ProofCard[] }) {
   return (
     <div className="grid grid-cols-3 gap-3">
@@ -17,6 +15,7 @@ export function ProofGrid({ cards }: { cards: ProofCard[] }) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.35 + i * 0.06 }}
+          data-testid="proof-card"
           className="glass hover-lift rounded-xl px-3 py-2.5 text-center"
         >
           <div className="text-gradient font-display text-lg font-bold">{card.value}</div>
@@ -57,8 +56,8 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.05 }}
             className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
           >
-            Your business is leaking time.<br />
-            <span className="text-gradient">Every single day.</span>
+            Every growing brand reaches{" "}
+            <span className="text-gradient">the same point.</span>
           </motion.h1>
 
           <motion.p
@@ -67,7 +66,8 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg"
           >
-            Ummah Growth Guide is a Business Systems Studio that eliminates repetitive manual work by designing intelligent systems built around how your business actually operates.
+            Support grows faster than the team. Not because demand increased. Because repetition did.
+            UGG designs customer support systems that resolve routine conversations before they reach your team.
           </motion.p>
 
           <motion.div
@@ -80,24 +80,17 @@ export function Hero() {
               href={SITE.auditUrl}
               className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background transition-transform hover:scale-[1.03]"
             >
-              Get Your Free Business Efficiency Assessment
+              Request an Operations Assessment
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </a>
             <a
-              href="#systems"
+              href="#operations"
               className="glass inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-white/[0.06]"
             >
-              Explore Intelligent Systems
+              How it works
               <ArrowRight className="size-4" />
             </a>
           </motion.div>
-
-          <div className="mt-12">
-            <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-              What UGG delivers
-            </div>
-            <ProofGrid cards={PROOF_CARDS} />
-          </div>
         </div>
 
         <motion.div
@@ -108,11 +101,11 @@ export function Hero() {
         >
           <NeuralHero />
           <div className="glass-strong absolute -bottom-4 -left-4 rounded-xl px-3 py-2 text-xs">
-            <span className="text-muted-foreground">Currently:</span>{" "}
-            <span className="text-foreground">Building ML portfolio projects</span>
+            <span className="text-muted-foreground">Specialty:</span>{" "}
+            <span className="text-foreground">Ecommerce support operations</span>
           </div>
           <div className="glass-strong absolute -right-3 top-6 rounded-xl px-3 py-2 text-xs">
-            <span className="text-emerald">●</span> Learning in public
+            <span className="text-emerald">●</span> Operations, not automation
           </div>
         </motion.div>
       </div>
