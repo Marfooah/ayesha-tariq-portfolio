@@ -43,7 +43,7 @@ export interface FaqItem {
 
 export const SITE = {
   name: "Ummah Growth Guide",
-  tagline: "We don't sell AI. We redesign how your business operates.",
+  tagline: "Customer support operations for ecommerce brands.",
   auditUrl: "/business-efficiency-assessment",
   email: "salam@ummahgrowthguide.com",
   linkedin: "",
@@ -53,9 +53,9 @@ export const SITE = {
 };
 
 export const META = {
-  title: "Ummah Growth Guide — Business Systems Studio",
+  title: "Ummah Growth Guide — Customer Support Operations",
   description:
-    "Ummah Growth Guide builds intelligent systems that eliminate repetitive work — so your business operates smarter. Get your free AI Opportunity Audit.",
+    "UGG designs customer support systems for growing ecommerce brands. Resolve routine conversations before they reach your team.",
 };
 
 // ─── Proof Cards ─────────────────────────────────────────────────────────────

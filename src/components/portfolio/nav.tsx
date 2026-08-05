@@ -1,11 +1,11 @@
 import { SITE } from "@/lib/site";
 
 const LINKS = [
-  { href: "#systems", label: "Systems" },
-  { href: "#process", label: "Process" },
-  { href: "#work",    label: "Work" },
-  { href: "#why-ugg", label: "Why UGG" },
-  { href: "#faq",     label: "FAQ" },
+  { href: "#operations", label: "How It Works" },
+  { href: "#systems",    label: "What We Improve" },
+  { href: "#work",       label: "Work" },
+  { href: "#why-ugg",    label: "Philosophy" },
+  { href: "#faq",        label: "FAQ" },
 ];
 
 export function Nav() {
@@ -30,7 +30,7 @@ export function Nav() {
             href={SITE.auditUrl}
             className="rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background transition-transform hover:scale-[1.03]"
           >
-            Free Assessment
+            Get Assessment
           </a>
         </div>
       </nav>

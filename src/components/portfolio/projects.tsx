@@ -1,8 +1,55 @@
 import { motion } from "framer-motion";
-import { Github, ExternalLink, ArrowUpRight } from "lucide-react";
-import { useState } from "react";
-import { type Project, thumbFor } from "@/lib/projects-data";
+import { ArrowRight } from "lucide-react";
 import { SectionLabel } from "./about";
+import type { Project } from "@/lib/projects-data";
+
+export function ProjectCard({ project, delay }: { project: Project; delay: number }) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.6, delay }}
+      className="glass-strong group relative overflow-hidden rounded-3xl transition-[box-shadow] duration-500 hover:shadow-glow"
+    >
+      <div className="relative aspect-[16/10] overflow-hidden bg-white/[0.03]">
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+        {project.featured && (
+          <span className="glass absolute left-4 top-4 rounded-full px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-emerald">
+            Featured
+          </span>
+        )}
+      </div>
+      <div className="space-y-4 p-6">
+        <div className="flex items-start justify-between gap-4">
+          <h3 className="font-display text-xl font-semibold">{project.title}</h3>
+          <ArrowRight className="size-5 shrink-0 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+        </div>
+        <p className="text-sm text-muted-foreground">{project.short_description}</p>
+        {project.metrics.length > 0 && (
+          <div className="grid grid-cols-3 gap-2 rounded-xl border border-white/5 bg-white/[0.02] p-3">
+            {project.metrics.slice(0, 3).map((m) => (
+              <div key={m.label} className="text-center">
+                <div className="font-display text-sm font-semibold text-foreground">{m.value}</div>
+                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{m.label}</div>
+              </div>
+            ))}
+          </div>
+        )}
+        <div className="flex flex-wrap gap-1.5">
+          {project.technologies.slice(0, 4).map((t) => (
+            <span
+              key={t}
+              className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[11px] text-muted-foreground"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+    </motion.article>
+  );
+}
 
 export function Projects({
   projects,
@@ -16,22 +63,19 @@ export function Projects({
   return (
     <section id="work" className="relative px-6 py-24 md:py-32">
       <div className="mx-auto max-w-6xl">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div>
-            <SectionLabel>Work</SectionLabel>
-            <h2 className="mt-6 max-w-2xl font-display text-3xl font-bold sm:text-4xl md:text-5xl">
-              Selected <span className="text-gradient">case studies</span>.
-            </h2>
-          </div>
-          <p className="max-w-md text-sm text-muted-foreground">
-            Real intelligent systems built for real business operations.
-          </p>
-        </div>
+        <SectionLabel>Work</SectionLabel>
+        <h2 className="mt-6 max-w-2xl font-display text-3xl font-bold sm:text-4xl md:text-5xl">
+          Operational improvements.{" "}
+          <span className="text-gradient">Measured results.</span>
+        </h2>
+        <p className="mt-4 max-w-xl text-sm text-muted-foreground">
+          Real work. No invented numbers. No invented clients.
+        </p>
 
         {/* Loading skeleton */}
         {isLoading && (
           <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {[0, 1, 2, 3].map((i) => (
+            {[0, 1].map((i) => (
               <div key={i} className="glass-strong rounded-3xl overflow-hidden animate-pulse">
                 <div className="aspect-[16/10] bg-white/[0.04]" />
                 <div className="p-6 space-y-3">
@@ -44,11 +88,32 @@ export function Projects({
           </div>
         )}
 
-        {/* Empty / error state */}
+        {/* Empty / placeholder state */}
         {!isLoading && (isError || projects.length === 0) && (
-          <div className="mt-12 glass rounded-2xl p-12 text-center text-muted-foreground">
-            New case studies coming soon.
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mt-12 glass-strong relative overflow-hidden rounded-3xl p-12 md:p-16"
+          >
+            <div className="absolute -right-20 -top-20 size-72 rounded-full bg-primary opacity-10 blur-3xl" aria-hidden />
+            <div className="max-w-lg">
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                Coming Soon
+              </span>
+              <h3 className="mt-4 font-display text-2xl font-bold md:text-3xl">
+                Case studies in preparation.
+              </h3>
+              <p className="mt-4 text-muted-foreground">
+                Operational improvements take time to measure properly. Case studies will be published
+                once results are verified and clients have approved sharing.
+              </p>
+              <p className="mt-3 text-sm text-muted-foreground">
+                No invented numbers. No invented testimonials.
+              </p>
+            </div>
+          </motion.div>
         )}
 
         {/* Loaded state */}
@@ -61,102 +126,5 @@ export function Projects({
         )}
       </div>
     </section>
-  );
-}
-
-export function ProjectCard({ project, delay }: { project: Project; delay: number }) {
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-
-  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width - 0.5;
-    const py = (e.clientY - rect.top) / rect.height - 0.5;
-    setTilt({ x: py * -6, y: px * 6 });
-  };
-  const reset = () => setTilt({ x: 0, y: 0 });
-
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay }}
-      onMouseMove={onMove}
-      onMouseLeave={reset}
-      style={{ transform: `perspective(1200px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }}
-      className="glass-strong group relative overflow-hidden rounded-3xl transition-[box-shadow] duration-500 hover:shadow-glow"
-    >
-      <div className="relative aspect-[16/10] overflow-hidden">
-        <img
-          src={thumbFor(project)}
-          alt={project.title}
-          loading="lazy"
-          width={1280}
-          height={800}
-          className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-        {project.featured && (
-          <span className="glass absolute left-4 top-4 rounded-full px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-emerald">
-            Featured
-          </span>
-        )}
-      </div>
-
-      <div className="space-y-4 p-6">
-        <div className="flex items-start justify-between gap-4">
-          <h3 className="font-display text-xl font-semibold">{project.title}</h3>
-          <ArrowUpRight className="size-5 shrink-0 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
-        </div>
-        <p className="text-sm text-muted-foreground">{project.short_description}</p>
-
-        {project.metrics.length > 0 && (
-          <div className="grid grid-cols-3 gap-2 rounded-xl border border-white/5 bg-white/[0.02] p-3">
-            {project.metrics.slice(0, 3).map((m) => (
-              <div key={m.label} className="text-center">
-                <div className="font-display text-sm font-semibold text-foreground">{m.value}</div>
-                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                  {m.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        <div className="flex flex-wrap gap-1.5">
-          {project.technologies.slice(0, 5).map((t) => (
-            <span
-              key={t}
-              className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[11px] text-muted-foreground"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-2 pt-2">
-          {project.github_url && (
-            <a
-              href={project.github_url}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1.5 text-xs transition-colors hover:bg-white/[0.05]"
-            >
-              <Github className="size-3.5" /> Code
-            </a>
-          )}
-          {project.demo_url && (
-            <a
-              href={project.demo_url}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-3 py-1.5 text-xs font-medium text-background"
-            >
-              <ExternalLink className="size-3.5" /> Live demo
-            </a>
-          )}
-        </div>
-      </div>
-    </motion.article>
   );
 }

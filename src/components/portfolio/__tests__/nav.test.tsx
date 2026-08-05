@@ -2,20 +2,19 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Nav } from "../nav";
 
-// Mock @/lib/site so the CTA href is stable
 vi.mock("@/lib/site", () => ({
   SITE: {
-    auditUrl: "https://example.com/audit",
+    auditUrl: "/business-efficiency-assessment",
     name: "Ummah Growth Guide",
-    tagline: "We don't sell AI. We redesign how your business operates.",
-    email: "hello@example.com",
-    linkedin: "https://linkedin.com",
-    github: "https://github.com",
-    githubUser: "ugg",
+    tagline: "Customer support operations for ecommerce brands.",
+    email: "salam@ummahgrowthguide.com",
+    linkedin: "",
+    github: "https://github.com/Marfooah",
+    githubUser: "Marfooah",
     socialProof: "",
   },
   META: {
-    title: "Ummah Growth Guide — Business Systems Studio",
+    title: "Ummah Growth Guide — Customer Support Operations",
     description: "desc",
   },
 }));
@@ -26,13 +25,13 @@ describe("Nav", () => {
     expect(screen.getByText("UGG")).toBeInTheDocument();
   });
 
-  it("renders all 5 nav links in order with correct hrefs", () => {
+  it("renders all 5 nav links", () => {
     render(<Nav />);
     const expected = [
-      { label: "Systems", href: "#systems" },
-      { label: "Process", href: "#process" },
+      { label: "How It Works", href: "#operations" },
+      { label: "What We Improve", href: "#systems" },
       { label: "Work",    href: "#work" },
-      { label: "Why UGG", href: "#why-ugg" },
+      { label: "Philosophy", href: "#why-ugg" },
       { label: "FAQ",     href: "#faq" },
     ];
     const links = screen.getAllByRole("link");
@@ -44,15 +43,14 @@ describe("Nav", () => {
     }
   });
 
-  it("renders the Free Audit CTA button", () => {
+  it("renders the Get Assessment CTA button", () => {
     render(<Nav />);
-    expect(screen.getByText("Free Assessment")).toBeInTheDocument();
+    expect(screen.getByText("Get Assessment")).toBeInTheDocument();
   });
 
   it("does not render any element with href=/auth or text Admin", () => {
     render(<Nav />);
-    const authLink = document.querySelector('[href="/auth"]');
-    expect(authLink).toBeNull();
+    expect(document.querySelector('[href="/auth"]')).toBeNull();
     expect(screen.queryByText(/admin/i)).toBeNull();
   });
 });

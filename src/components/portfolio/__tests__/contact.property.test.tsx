@@ -14,7 +14,7 @@ describe("Property 9 — Final CTA button href equals auditUrl", () => {
         fc.webUrl(),
         (url: string) => {
           const { unmount } = render(<FinalCTAContent auditUrl={url} />);
-          const link = screen.getByRole("link", { name: /get your free business efficiency assessment/i });
+          const link = screen.getByRole("link", { name: /request an operations assessment/i });
           expect(link).toHaveAttribute("href", url);
           unmount();
         }
@@ -24,7 +24,7 @@ describe("Property 9 — Final CTA button href equals auditUrl", () => {
 
   it("renders a disabled button (not a link) when auditUrl is undefined", () => {
     render(<FinalCTAContent auditUrl={undefined} />);
-    const button = screen.getByRole("button", { name: /get your free business efficiency assessment/i });
+    const button = screen.getByRole("button", { name: /request an operations assessment/i });
     expect(button).toBeDisabled();
   });
 });

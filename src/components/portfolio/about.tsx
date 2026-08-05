@@ -9,7 +9,6 @@ import {
   Brain,
   Sparkles,
 } from "lucide-react";
-import { PRINCIPLES } from "@/lib/site";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Target,
@@ -47,27 +46,61 @@ export function About() {
   return (
     <section id="why-ugg" className="relative px-6 py-24 md:py-32">
       <div className="mx-auto max-w-6xl">
-        <SectionLabel>Why UGG</SectionLabel>
+
+        {/* Section 3 — Philosophy */}
+        <SectionLabel>Our Philosophy</SectionLabel>
         <h2 className="mt-6 max-w-2xl font-display text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
-          What makes the difference for{" "}
-          <span className="text-gradient">your business</span>.
+          Growth shouldn't require answering{" "}
+          <span className="text-gradient">the same question twice.</span>
         </h2>
 
-        {PRINCIPLES.length > 0 && (
-          <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {PRINCIPLES.map((p, i) => (
-              <motion.div
-                key={p.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, delay: i * 0.06 }}
-              >
-                <PrincipleCard principle={p} />
-              </motion.div>
-            ))}
-          </div>
-        )}
+        <div className="mt-12 grid gap-4 md:grid-cols-3">
+          {[
+            {
+              heading: "Great operations remove repetitive work before it reaches people.",
+              body: "When a question reaches your team, the system has already failed. A well-designed operation resolves it before that point.",
+            },
+            {
+              heading: "Technology supports people. It doesn't replace responsibility.",
+              body: "The goal is not to automate your team out of a job. The goal is to give them work worth doing.",
+            },
+            {
+              heading: "The bottleneck is rarely the team. It's almost always the system.",
+              body: "Hiring more people to manage a broken process makes the process more expensive. It doesn't fix it.",
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={item.heading}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="glass hover-lift rounded-2xl p-6"
+            >
+              <h3 className="font-display text-base font-semibold leading-snug">{item.heading}</h3>
+              <p className="mt-3 text-sm text-muted-foreground">{item.body}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Section 4 — Introduce UGG */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-16 glass-strong relative overflow-hidden rounded-3xl p-8 md:p-14"
+        >
+          <div className="absolute -right-20 -top-20 size-72 rounded-full bg-primary opacity-10 blur-3xl" aria-hidden />
+          <SectionLabel>Who We Are</SectionLabel>
+          <p className="mt-6 max-w-2xl font-display text-xl font-medium leading-relaxed text-foreground md:text-2xl">
+            UGG designs customer support systems that resolve routine conversations before they reach your team.
+          </p>
+          <p className="mt-4 max-w-xl text-muted-foreground">
+            Nothing more. Nothing less.
+          </p>
+        </motion.div>
+
       </div>
     </section>
   );
