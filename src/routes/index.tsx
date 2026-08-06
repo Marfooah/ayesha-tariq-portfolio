@@ -11,6 +11,7 @@ import { About } from "@/components/portfolio/about";
 import { FAQ } from "@/components/portfolio/faq";
 import { Contact } from "@/components/portfolio/contact";
 import { Footer } from "@/components/portfolio/footer";
+import { WhatsAppFloat } from "@/components/portfolio/whatsapp-float";
 import type { Project } from "@/lib/projects-data";
 import { SITE, META } from "@/lib/site";
 
@@ -67,6 +68,7 @@ function Index() {
         <Contact />
       </main>
       <Footer />
+      <WhatsAppFloat />
     </div>
   );
 }

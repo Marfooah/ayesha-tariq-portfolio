@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { SectionLabel } from "./about";
+import { WhatsAppCTA } from "./whatsapp-float";
 
 export function FinalCTAContent({
   auditUrl,
@@ -39,6 +40,7 @@ export function FinalCTAContent({
             <ArrowRight className="size-4" />
           </button>
         )}
+        <WhatsAppCTA />
         {socialProof && (
           <span className="glass rounded-full px-3 py-1 text-xs text-muted-foreground">
             {socialProof}
