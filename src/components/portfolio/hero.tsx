@@ -4,6 +4,7 @@ import { SITE } from "@/lib/site";
 import type { ProofCard } from "@/lib/site";
 import { Particles } from "./particles";
 import { NeuralHero } from "./neural-hero";
+import { WhatsAppCTA } from "./whatsapp-float";
 
 // Kept for property tests
 export function ProofGrid({ cards }: { cards: ProofCard[] }) {
@@ -83,6 +84,7 @@ export function Hero() {
               Request an Operations Assessment
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </a>
+            <WhatsAppCTA />
             <a
               href="#operations"
               className="glass inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-white/[0.06]"
