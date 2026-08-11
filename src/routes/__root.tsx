@@ -111,6 +111,8 @@ function RootShell({ children }: { children: ReactNode }) {
       <body>
         {children}
         <Scripts />
+        {/* Hostinger Reach onsite tracking script */}
+        <script src="https://cdn-reach.hostinger.com/js/embed.js" async />
       </body>
     </html>
   );
