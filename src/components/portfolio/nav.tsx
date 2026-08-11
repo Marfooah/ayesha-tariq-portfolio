@@ -6,6 +6,7 @@ const LINKS = [
   { href: "#work",       label: "Work" },
   { href: "#why-ugg",    label: "Philosophy" },
   { href: "#faq",        label: "FAQ" },
+  { href: "#pricing",    label: "Pricing" },
 ];
 
 export function Nav() {
