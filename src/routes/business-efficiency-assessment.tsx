@@ -11,7 +11,6 @@ import {
   FileText,
   Lightbulb,
 } from "lucide-react";
-import { Nav } from "@/components/portfolio/nav";
 import { Footer } from "@/components/portfolio/footer";
 import { SectionLabel } from "@/components/portfolio/about";
 import { Particles } from "@/components/portfolio/particles";
@@ -50,7 +49,7 @@ function CTAButton({ className = "" }: { className?: string }) {
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 function AssessmentHero() {
   return (
-    <section className="relative isolate overflow-hidden pt-28 pb-24 md:pt-36 md:pb-32">
+    <section className="relative isolate overflow-hidden pt-12 pb-24 md:pt-16 md:pb-32">
       <div className="absolute inset-0 bg-mesh opacity-70" aria-hidden />
       <div
         className="absolute inset-0 bg-grid opacity-40 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_30%,#000_30%,transparent_70%)]"
@@ -479,7 +478,6 @@ function FinalCTA() {
 function BusinessEfficiencyAssessment() {
   return (
     <div className="min-h-screen">
-      <Nav />
       <main>
         <AssessmentHero />
         <WhatYouReceive />
