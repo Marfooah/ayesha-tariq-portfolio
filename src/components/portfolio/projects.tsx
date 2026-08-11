@@ -18,60 +18,70 @@ const TECHMART_PROJECT = {
   ],
   featured: true,
   thumbnail_url: techmart,
+  demo_url: "https://techmart-pk-eight.vercel.app",
 };
 
 // ─── ProjectCard ──────────────────────────────────────────────────────────────
 export function ProjectCard({ project, delay }: { project: Project; delay: number }) {
+  const demoUrl = (project as any).demo_url as string | undefined;
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay }}
-      className="glass-strong group relative overflow-hidden rounded-3xl transition-[box-shadow] duration-500 hover:shadow-glow"
+    <a
+      href={demoUrl ?? "#"}
+      target="_blank"
+      rel="noreferrer noopener"
+      aria-label={`View ${project.title} live application`}
+      className="block"
     >
-      <div className="relative aspect-[16/10] overflow-hidden">
-        <img
-          src={project.thumbnail_url ?? ""}
-          alt={project.title}
-          loading="lazy"
-          className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-        {project.featured && (
-          <span className="glass absolute left-4 top-4 rounded-full px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-emerald">
-            Featured
-          </span>
-        )}
-      </div>
+      <motion.article
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.6, delay }}
+        className="glass-strong group relative overflow-hidden rounded-3xl transition-[box-shadow] duration-500 hover:shadow-glow"
+      >
+        <div className="relative aspect-[16/10] overflow-hidden">
+          <img
+            src={project.thumbnail_url ?? ""}
+            alt={project.title}
+            loading="lazy"
+            className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+          {project.featured && (
+            <span className="glass absolute left-4 top-4 rounded-full px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-emerald">
+              Featured
+            </span>
+          )}
+        </div>
 
-      <div className="space-y-4 p-6">
-        <h3 className="font-display text-xl font-semibold">{project.title}</h3>
-        <p className="text-sm text-muted-foreground">{project.short_description}</p>
+        <div className="space-y-4 p-6">
+          <h3 className="font-display text-xl font-semibold">{project.title}</h3>
+          <p className="text-sm text-muted-foreground">{project.short_description}</p>
 
-        {project.metrics.length > 0 && (
-          <div className="grid grid-cols-3 gap-2 rounded-xl border border-white/5 bg-white/[0.02] p-3">
-            {project.metrics.slice(0, 3).map((m) => (
-              <div key={m.label} className="text-center">
-                <div className="text-gradient font-display text-sm font-semibold">{m.value}</div>
-                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{m.label}</div>
-              </div>
+          {project.metrics.length > 0 && (
+            <div className="grid grid-cols-3 gap-2 rounded-xl border border-white/5 bg-white/[0.02] p-3">
+              {project.metrics.slice(0, 3).map((m) => (
+                <div key={m.label} className="text-center">
+                  <div className="text-gradient font-display text-sm font-semibold">{m.value}</div>
+                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{m.label}</div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="flex flex-wrap gap-1.5">
+            {project.technologies.slice(0, 4).map((t) => (
+              <span
+                key={t}
+                className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[11px] text-muted-foreground"
+              >
+                {t}
+              </span>
             ))}
           </div>
-        )}
-
-        <div className="flex flex-wrap gap-1.5">
-          {project.technologies.slice(0, 4).map((t) => (
-            <span
-              key={t}
-              className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[11px] text-muted-foreground"
-            >
-              {t}
-            </span>
-          ))}
         </div>
-      </div>
-    </motion.article>
+      </motion.article>
+    </a>
   );
 }
 
