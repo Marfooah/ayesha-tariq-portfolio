@@ -13,6 +13,7 @@ import { Contact } from "@/components/portfolio/contact";
 import { Footer } from "@/components/portfolio/footer";
 import { WhatsAppFloat } from "@/components/portfolio/whatsapp-float";
 import { Newsletter } from "@/components/portfolio/newsletter";
+import { Pricing } from "@/components/portfolio/pricing";
 import type { Project } from "@/lib/projects-data";
 import { SITE, META } from "@/lib/site";
 
@@ -66,6 +67,7 @@ function Index() {
         <Projects projects={projects} isLoading={isLoading} isError={isError} />
         <About />
         <FAQ />
+        <Pricing />
         <Newsletter />
         <Contact />
       </main>

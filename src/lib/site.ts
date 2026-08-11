@@ -39,6 +39,20 @@ export interface FaqItem {
   answer: string;
 }
 
+/** A single engagement tier displayed in the Pricing section */
+export interface PricingTier {
+  /** Zero-padded display number, e.g. "01". Max 5 characters. */
+  number: string;
+  /** All-caps plan name, e.g. "FOUNDATION". Max 50 characters. */
+  name: string;
+  /** Short description of scope. Max 200 characters. */
+  description: string;
+  /** Human-readable price string, e.g. "FROM $1,500 USD". Max 20 characters. */
+  price: string;
+  /** Billing cadence descriptor, e.g. "one-time setup". Max 50 characters. */
+  billing: string;
+}
+
 // ─── Site Config ─────────────────────────────────────────────────────────────
 
 export const SITE = {
@@ -404,5 +418,31 @@ export const FAQ_ITEMS: FaqItem[] = [
     question: "What does the free AI Opportunity Audit actually involve?",
     answer:
       "The audit is a 30-minute structured conversation focused on understanding your current workflows, where time is being lost, and which systems would deliver the clearest return. There is no sales pitch — the output is a plain-language map of your automation opportunities.",
+  },
+];
+
+// ─── Pricing Tiers ────────────────────────────────────────────────────────────
+
+export const PRICING_TIERS: PricingTier[] = [
+  {
+    number: "01",
+    name: "FOUNDATION",
+    description: "For businesses beginning with one high-volume support workflow.",
+    price: "FROM $1,500 USD",
+    billing: "one-time setup",
+  },
+  {
+    number: "02",
+    name: "SYSTEM",
+    description: "For businesses requiring multiple support workflows and operational actions.",
+    price: "FROM $3,500 USD",
+    billing: "one-time setup",
+  },
+  {
+    number: "03",
+    name: "ADVANCED",
+    description: "For businesses requiring a broader customer-support operating system.",
+    price: "CUSTOM USD",
+    billing: "tailored engagement",
   },
 ];
